@@ -81,6 +81,18 @@
     .svc-feats li{font-size:.8rem;color:var(--mid);display:flex;align-items:center;gap:8px;}
     .svc-feats li::before{content:'→';color:var(--accent);font-family:var(--font-mono);font-size:.65rem;flex-shrink:0;}
     @media(max-width:900px){.svc-grid{grid-template-columns:1fr;}}
+    .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+    .about-yt{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--bg2);aspect-ratio:16/9;}
+    .about-yt iframe{position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:20px;}
+    .about-text{display:flex;flex-direction:column;gap:20px;}
+    .about-title{font-family:var(--font-display);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;line-height:.95;letter-spacing:-1px;}
+    .about-title em{color:var(--accent);font-style:normal;}
+    .about-title-en{font-family:var(--font-mono);font-size:.72rem;color:var(--muted);letter-spacing:2px;margin-top:8px;}
+    .about-desc-zh{font-size:.92rem;line-height:1.9;color:var(--mid);}
+    .about-desc-en{font-size:.78rem;line-height:1.7;color:var(--muted);font-style:italic;}
+    .about-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;}
+    .about-tag{font-family:var(--font-mono);font-size:.65rem;padding:6px 14px;border-radius:100px;border:1px solid var(--line);color:var(--mid);}
+    @media(max-width:768px){.about-inner{grid-template-columns:1fr;}}
     .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
     .big-text{font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;line-height:1.2;margin-bottom:24px;}
     .big-text em{color:var(--accent);font-style:normal;}
@@ -186,6 +198,7 @@
     </div>
     <ul class="nav-links">
       <li><a href="#services">服務 / Services</a></li>
+      <li><a href="#about">關於 / About</a></li>
       <li><a href="#process">流程 / Process</a></li>
       <li><a href="#pricing">收費 / Pricing</a></li>
       <li><a href="#contact">聯絡 / Contact</a></li>
@@ -261,7 +274,7 @@
         <div class="svc-name-zh">運動數據分析</div>
         <div class="svc-name-en">Sports Analytics</div>
         <p class="svc-desc-zh">棒球 / 籃球數據視覺化。球員表現、賽季趨勢、AI 自動戰報。</p>
-        <p class="svc-desc-en">Baseball & basketball analytics. AI-generated performance reports.</p>
+        <p class="svc-desc-en">Baseball and basketball analytics. AI-generated performance reports.</p>
         <div class="svc-price">NT$3,000 起 / Starting from</div>
         <ul class="svc-feats">
           <li>CPBL / NBA 數據處理</li>
@@ -270,6 +283,39 @@
           <li>互動式儀表板</li>
           <li>定期更新方案可選</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="border-top:1px solid var(--line);">
+    <div class="eyebrow reveal">關於我們 / About Us</div>
+    <h2 class="sec-title reveal">我們是誰</h2>
+    <div class="sec-en reveal">Who We Are</div>
+    <div class="about-inner reveal">
+      <div class="about-yt">
+        <iframe
+          src="https://www.youtube.com/embed/2wBRB9L77-4?rel=0&modestbranding=1&color=white"
+          title="企癮鎖 AddiLock 公司介紹"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="about-text">
+        <div>
+          <div class="about-title">企癮鎖<br/><em>AddiLock</em></div>
+          <div class="about-title-en">Addictively Yours. Locked for Life.</div>
+        </div>
+        <p class="about-desc-zh">企癮鎖是一間來自台灣的 AI 解決方案公司。我們相信，每一個品牌都值得擁有一把屬於自己的鎖——一個讓客戶上癮、讓競爭對手無法複製的專屬解決方案。</p>
+        <p class="about-desc-en">AddiLock is an AI solutions company from Taiwan. We believe every brand deserves its own lock — a bespoke solution that keeps clients coming back and competitors at bay.</p>
+        <div class="about-tags">
+          <span class="about-tag">AI Web Design</span>
+          <span class="about-tag">Automation</span>
+          <span class="about-tag">Sports Analytics</span>
+          <span class="about-tag">Taiwan Based</span>
+          <span class="about-tag">Global Service</span>
+          <span class="about-tag">Remote First</span>
+        </div>
+        <a href="#contact" class="btn-primary" style="width:fit-content;" onclick="track('about_cta','About')">免費諮詢 / Get Started →</a>
       </div>
     </div>
   </section>
@@ -424,7 +470,7 @@
   <footer>
     <div><div class="foot-zh">企癮鎖</div><div class="foot-en">AddiLock</div></div>
     <div class="foot-copy">© 2026 企癮鎖 AddiLock — Addictively Yours. Locked for Life.</div>
-    <div class="foot-links"><a href="#services">服務</a><a href="#process">流程</a><a href="#pricing">收費</a><a href="#contact">聯絡</a></div>
+    <div class="foot-links"><a href="#services">服務</a><a href="#about">關於</a><a href="#process">流程</a><a href="#pricing">收費</a><a href="#contact">聯絡</a></div>
   </footer>
 
   <div class="toast" id="toast"></div>
@@ -456,9 +502,9 @@
       const n=document.getElementById('cf-name').value.trim();
       const c=document.getElementById('cf-contact').value.trim();
       const m=document.getElementById('cf-msg').value.trim();
-      if(!n||!c){showToast('⚠️ 請填寫姓名與聯絡方式 / Fill in name & contact');return;}
-      if(!m){showToast('⚠️ 請描述需求 / Describe your project');return;}
-      showToast("✅ 已收到！24小時內回覆 / We'll reply in 24hrs!");
+      if(!n||!c){showToast('Please fill in name & contact');return;}
+      if(!m){showToast('Please describe your project');return;}
+      showToast("We'll reply within 24 hours!");
       document.getElementById('cf-name').value='';
       document.getElementById('cf-contact').value='';
       document.getElementById('cf-msg').value='';
