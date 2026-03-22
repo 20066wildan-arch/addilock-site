@@ -7,22 +7,26 @@
   <meta name="description" content="企癮鎖 AddiLock 提供 AI 網站設計、自動化工具、運動數據分析。全球服務，專屬訂製。Addictively Yours. Locked for Life."/>
   <meta name="google-site-verification" content="2O6O3QMDRF6NhwWckND9N3hMmKRuLv4hdEX7PzKvJe0"/>
 
-  <!-- ✅ GA4 -->
+  <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WS5636M5YD"></script>
   <script>
-    window.dataLayer=window.dataLayer||[];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js',new Date());
-    gtag('config','G-WS5636M5YD');
-    function track(a,l){gtag('event',a,{event_category:'CTA',event_label:l});}
-  </script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-WS5636M5YD');
 
-  <!-- ✅ EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    /* ✅ track() 加 typeof 保護，GA4 未載入時不報錯 */
+    function track(a, l) {
+      if (typeof gtag === 'function') {
+        gtag('event', a, { event_category: 'CTA', event_label: l });
+      }
+    }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
   <style>
     :root{
       --bg:#f0f4f8;
@@ -122,7 +126,13 @@
 
     /* SERVICES */
     .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-    .svc-card{background:var(--white);border:1px solid var(--line2);border-radius:16px;padding:36px 28px;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden;}
+    .svc-card{
+      background:var(--white);border:1px solid var(--line2);border-radius:16px;padding:36px 28px;
+      transition:border-color .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden;
+      /* ✅ CSS 預設 opacity:0 防閃爍 */
+      opacity:0;transform:translateY(16px);
+    }
+    .svc-card.anim-in{opacity:1;transform:none;}
     .svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--teal));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
     .svc-card:hover{border-color:var(--blue);transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,86,219,.1);}
     .svc-card:hover::before{transform:scaleX(1);}
@@ -151,7 +161,12 @@
 
     /* WHY */
     .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
-    .why-card{background:var(--white);border:1px solid var(--line2);border-radius:14px;padding:28px 24px;display:flex;gap:18px;transition:border-color .2s,box-shadow .2s;}
+    .why-card{
+      background:var(--white);border:1px solid var(--line2);border-radius:14px;padding:28px 24px;display:flex;gap:18px;
+      transition:border-color .2s,box-shadow .2s;
+      opacity:0;transform:translateY(16px);
+    }
+    .why-card.anim-in{opacity:1;transform:none;}
     .why-card:hover{border-color:var(--blue);box-shadow:0 8px 24px rgba(26,86,219,.08);}
     .why-icon{width:44px;height:44px;border-radius:10px;background:var(--blue-lt);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
     .why-name{font-size:.95rem;font-weight:700;margin-bottom:4px;}
@@ -159,7 +174,12 @@
 
     /* PROCESS */
     .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line2);border:1px solid var(--line2);border-radius:16px;overflow:hidden;}
-    .proc-card{background:var(--white);padding:32px 24px;transition:background .15s;position:relative;}
+    .proc-card{
+      background:var(--white);padding:32px 24px;position:relative;
+      transition:background .15s;
+      opacity:0;transform:translateY(16px);
+    }
+    .proc-card.anim-in{opacity:1;transform:none;}
     .proc-card:hover{background:#f8faff;}
     .proc-num{font-family:var(--mono);font-size:.65rem;color:var(--blue);letter-spacing:2px;font-weight:600;margin-bottom:16px;}
     .proc-icon{font-size:1.4rem;margin-bottom:12px;display:block;}
@@ -171,7 +191,13 @@
 
     /* PRICING */
     .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-    .price-card{border:1px solid var(--line2);border-radius:16px;padding:36px 28px;background:var(--white);display:flex;flex-direction:column;transition:border-color .2s,transform .2s,box-shadow .2s;position:relative;overflow:hidden;}
+    .price-card{
+      border:1px solid var(--line2);border-radius:16px;padding:36px 28px;background:var(--white);
+      display:flex;flex-direction:column;position:relative;overflow:hidden;
+      transition:border-color .2s,transform .2s,box-shadow .2s;
+      opacity:0;transform:translateY(16px);
+    }
+    .price-card.anim-in{opacity:1;transform:none;}
     .price-card:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 12px 40px rgba(26,86,219,.1);}
     .price-card.featured{border-color:var(--blue);background:linear-gradient(180deg,#eff6ff,var(--white));}
     .price-badge{position:absolute;top:0;right:0;background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;padding:4px 14px;border-bottom-left-radius:10px;letter-spacing:.5px;}
@@ -200,7 +226,13 @@
     @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
     .globe-label{font-family:var(--mono);font-size:.7rem;color:rgba(255,255,255,.3);letter-spacing:2px;}
     .gpoints{display:flex;flex-direction:column;gap:12px;}
-    .gpoint{display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);transition:border-color .2s,background .2s;}
+    .gpoint{
+      display:flex;align-items:center;gap:16px;padding:14px 20px;border-radius:10px;
+      border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);
+      transition:border-color .2s,background .2s;
+      opacity:0;transform:translateY(16px);
+    }
+    .gpoint.anim-in{opacity:1;transform:none;}
     .gpoint:hover{border-color:rgba(26,86,219,.4);background:rgba(26,86,219,.08);}
     .gflag{font-size:1.3rem;flex-shrink:0;}
     .gname-zh{font-weight:600;font-size:.88rem;color:#fff;}
@@ -226,6 +258,7 @@
     .cf-in:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,219,.1);}
     .cf-in::placeholder{color:var(--light);}
     textarea.cf-in{resize:vertical;min-height:110px;}
+    @media(max-width:768px){.contact-inner{grid-template-columns:1fr;}.cf-row{grid-template-columns:1fr;}}
 
     /* FOOTER */
     footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.08);padding:36px 32px;}
@@ -252,7 +285,7 @@
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ✅ NAV — onclick 改 data-action -->
   <nav>
     <div class="nav-inner">
       <div class="nav-brand">
@@ -268,7 +301,7 @@
       </ul>
       <div class="nav-right">
         <span class="nav-lang">ZH / EN</span>
-        <a href="#contact" class="nav-cta" onclick="track('nav_cta','Navbar')">免費諮詢</a>
+        <a href="#contact" class="nav-cta" data-action="nav_cta" data-label="Navbar">免費諮詢</a>
       </div>
     </div>
   </nav>
@@ -282,8 +315,8 @@
         <div class="hero-slogan">Addictively Yours. Locked for Life.</div>
         <p class="hero-desc">讓每個客戶都上癮於自己專屬的解決方案。AI 網站設計、自動化工具、運動數據分析——全球服務，滿意後付款。</p>
         <div class="hero-ctas">
-          <a href="#contact" class="btn-primary" onclick="track('hero_cta','Hero')">免費諮詢 →</a>
-          <a href="#services" class="btn-outline" onclick="track('hero_svc','Hero')">查看服務</a>
+          <a href="#contact" class="btn-primary" data-action="hero_cta" data-label="Hero">免費諮詢 →</a>
+          <a href="#services" class="btn-outline" data-action="hero_svc" data-label="Hero">查看服務</a>
         </div>
       </div>
       <div class="hero-card">
@@ -374,7 +407,7 @@
   <!-- ABOUT + VIDEO -->
   <div class="section-wrap dark">
     <div class="section" id="about">
-      <div class="sec-eyebrow reveal" style="color:var(--blue-mid);"><span style="background:var(--blue-mid);"></span>關於我們 / About Us</div>
+      <div class="sec-eyebrow reveal" style="color:var(--blue-mid);">關於我們 / About Us</div>
       <h2 class="sec-title light reveal">我們是誰</h2>
       <p class="sec-sub light reveal">Who We Are</p>
       <div class="about-inner reveal">
@@ -396,7 +429,7 @@
             <span class="about-tag">Global Service</span>
             <span class="about-tag">Remote First</span>
           </div>
-          <a href="#contact" class="btn-primary" style="width:fit-content;" onclick="track('about_cta','About')">免費諮詢 / Get Started →</a>
+          <a href="#contact" class="btn-primary" style="width:fit-content;" data-action="about_cta" data-label="About">免費諮詢 / Get Started →</a>
         </div>
       </div>
     </div>
@@ -452,7 +485,7 @@
             <li class="dim"><span class="xx">✗</span> Google Maps</li>
             <li class="dim"><span class="xx">✗</span> 互動功能</li>
           </ul>
-          <a href="#contact" class="price-cta ol" onclick="track('pricing','Starter')">詢問報價 / Inquire</a>
+          <a href="#contact" class="price-cta ol" data-action="pricing" data-label="Starter">詢問報價 / Inquire</a>
         </div>
         <div class="price-card featured">
           <div class="price-badge">最受歡迎</div>
@@ -468,7 +501,7 @@
             <li><span class="ck">✓</span> 互動功能</li>
             <li><span class="ck">✓</span> 7 天免費修改</li>
           </ul>
-          <a href="#contact" class="price-cta sl" onclick="track('pricing','Standard')">立即諮詢 / Consult</a>
+          <a href="#contact" class="price-cta sl" data-action="pricing" data-label="Standard">立即諮詢 / Consult</a>
         </div>
         <div class="price-card">
           <div class="price-tier">進階方案 / Advanced</div>
@@ -483,7 +516,7 @@
             <li><span class="ck">✓</span> 30 天維護支援</li>
             <li><span class="ck">✓</span> 自訂網域設定</li>
           </ul>
-          <a href="#contact" class="price-cta ol" onclick="track('pricing','Advanced')">詢問報價 / Inquire</a>
+          <a href="#contact" class="price-cta ol" data-action="pricing" data-label="Advanced">詢問報價 / Inquire</a>
         </div>
       </div>
     </div>
@@ -517,26 +550,32 @@
           <h2 class="contact-title">讓我們<br/><em>開始合作</em></h2>
           <p class="contact-desc">有任何需求，歡迎聯絡。通常 24 小時內回覆，全球客戶均歡迎。<br/><span style="font-size:.82rem;font-style:italic;color:var(--light);">We reply within 24 hours. All global inquiries welcome.</span></p>
           <div class="clinks">
-            <!-- ✅ 聯絡資訊由 JS 動態渲染，防止爬蟲 -->
-            <a id="clink-line" class="clink" onclick="track('contact','LINE')">
+            <a id="clink-line" class="clink" data-action="contact" data-label="LINE">
               <div class="clink-icon">💬</div>
               <div><div class="clink-label">LINE（台灣 / 日本）</div><div class="clink-val" id="line-val"></div></div>
             </a>
-            <a id="clink-email" class="clink" onclick="track('contact','Email')">
+            <a id="clink-email" class="clink" data-action="contact" data-label="Email">
               <div class="clink-icon">📧</div>
               <div><div class="clink-label">Email（全球）</div><div class="clink-val" id="email-val"></div></div>
             </a>
-            <a href="https://github.com/20066wildan-arch" target="_blank" class="clink" onclick="track('contact','GitHub')">
+            <a href="https://github.com/20066wildan-arch" target="_blank" rel="noopener" class="clink" data-action="contact" data-label="GitHub">
               <div class="clink-icon">💻</div>
               <div><div class="clink-label">GitHub（作品集）</div><div class="clink-val">github.com/20066wildan-arch</div></div>
             </a>
           </div>
         </div>
         <div class="reveal">
-          <div class="cform">
+          <!-- ✅ 改用 <form> + submit 事件，支援 Enter 鍵送出 -->
+          <form class="cform" id="contact-form" novalidate>
             <div class="cf-row">
-              <div class="cf-g"><label class="cf-label" for="cf-name">姓名 / Name</label><input class="cf-in" type="text" placeholder="Your name" id="cf-name"/></div>
-              <div class="cf-g"><label class="cf-label" for="cf-contact">聯絡方式 / Contact</label><input class="cf-in" type="text" placeholder="LINE / Email / WhatsApp" id="cf-contact"/></div>
+              <div class="cf-g">
+                <label class="cf-label" for="cf-name">姓名 / Name</label>
+                <input class="cf-in" type="text" placeholder="Your name" id="cf-name" required/>
+              </div>
+              <div class="cf-g">
+                <label class="cf-label" for="cf-contact">聯絡方式 / Contact</label>
+                <input class="cf-in" type="text" placeholder="LINE / Email / WhatsApp" id="cf-contact" required/>
+              </div>
             </div>
             <div class="cf-g">
               <label class="cf-label" for="cf-type">服務類型 / Service</label>
@@ -548,10 +587,15 @@
                 <option>其他 / Other</option>
               </select>
             </div>
-            <div class="cf-g"><label class="cf-label" for="cf-msg">需求說明 / Message</label><textarea class="cf-in" placeholder="Describe your project, budget, timeline..." id="cf-msg"></textarea></div>
-            <!-- ✅ type="button" 避免意外 submit -->
-            <button type="button" class="btn-primary" id="submit-btn" style="width:100%;justify-content:center;" onclick="submitForm(); track('submit','Contact')">送出詢問 / Submit →</button>
-          </div>
+            <div class="cf-g">
+              <label class="cf-label" for="cf-msg">需求說明 / Message</label>
+              <textarea class="cf-in" placeholder="Describe your project, budget, timeline..." id="cf-msg" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" id="submit-btn" style="width:100%;justify-content:center;"
+                    data-action="submit_form" data-label="Contact">
+              送出詢問 / Submit →
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -562,7 +606,13 @@
     <div class="footer-inner">
       <div><div class="footer-brand-zh">企癮鎖</div><div class="footer-brand-en">AddiLock</div></div>
       <div class="footer-copy">© 2026 企癮鎖 AddiLock — Addictively Yours. Locked for Life.</div>
-      <div class="footer-links"><a href="#services">服務</a><a href="#about">關於</a><a href="#process">流程</a><a href="#pricing">收費</a><a href="#contact">聯絡</a></div>
+      <div class="footer-links">
+        <a href="#services">服務</a>
+        <a href="#about">關於</a>
+        <a href="#process">流程</a>
+        <a href="#pricing">收費</a>
+        <a href="#contact">聯絡</a>
+      </div>
     </div>
   </footer>
 
@@ -570,94 +620,120 @@
 
   <script>
     /* ============================================================
-       ✅ EmailJS 設定（與 index.html 共用同一組帳號）
-       ============================================================ */
-    const EMAILJS_PUBLIC_KEY  = 'YxKCk7RdFi5LjNMIA';
-    const EMAILJS_SERVICE_ID  = 'Happy95051444';
-    const EMAILJS_TEMPLATE_ID = 'template_23g2lo8';
-
-    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-
-    /* ============================================================
-       ✅ 聯絡資訊防爬蟲
+       1. 聯絡資訊防爬蟲
        ============================================================ */
     (function(){
       const lineNum = ['096','6','42','98','95'].join('');
-      const lineEl  = document.getElementById('clink-line');
-      lineEl.href   = 'https://line.me/ti/p/~' + lineNum;
+      document.getElementById('clink-line').href = 'https://line.me/ti/p/~' + lineNum;
       document.getElementById('line-val').textContent = lineNum;
 
       const emailFull = '2006wils' + 'an' + '@' + 'gmail' + '.com';
-      const emailEl   = document.getElementById('clink-email');
-      emailEl.href    = 'mailto:' + emailFull;
+      document.getElementById('clink-email').href = 'mailto:' + emailFull;
       document.getElementById('email-val').textContent = emailFull;
     })();
 
     /* ============================================================
-       Reveal on scroll
+       2. Google Apps Script 網址（與 index.html 共用同一個）
+       ============================================================ */
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbxzcb3zgjwR0fwlHZB0OIitMG1bHC1lHKyxkIsjeIPM6RrQPF9BlWTIo-6-gqhy_FV4/exec';
+
+    /* ============================================================
+       3. Scroll Reveal（修正版）
+       ✅ 子元素 CSS 預設 opacity:0，Observer 觸發後加 .anim-in，不閃爍
        ============================================================ */
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
         e.target.classList.add('visible');
         e.target.querySelectorAll('.svc-card,.proc-card,.price-card,.why-card,.gpoint').forEach((c, i) => {
-          c.style.opacity    = '0';
-          c.style.transform  = 'translateY(16px)';
-          c.style.transition = `opacity .5s ${i * .08}s, transform .5s ${i * .08}s`;
-          setTimeout(() => { c.style.opacity = '1'; c.style.transform = 'none'; }, i * 80);
+          c.style.transitionDelay = `${i * 0.08}s`;
+          c.classList.add('anim-in');
         });
+        obs.unobserve(e.target);
       });
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
     /* ============================================================
-       Toast helper
+       4. GA4 全域事件監聽（Event Delegation）
+       ✅ HTML 只需掛 data-action / data-label，JS 統一處理
+       ============================================================ */
+    document.addEventListener('click', function(e) {
+      const target = e.target.closest('[data-action]');
+      if (target && typeof track === 'function') {
+        track(
+          target.getAttribute('data-action'),
+          target.getAttribute('data-label') || 'unlabeled'
+        );
+      }
+    });
+
+    /* ============================================================
+       5. Toast 工具
        ============================================================ */
     function showToast(msg, type = '') {
       const t = document.getElementById('toast');
       t.textContent = msg;
-      t.className   = 'toast show' + (type ? ' ' + type : '');
+      t.className = 'toast show' + (type ? ' ' + type : '');
       setTimeout(() => t.className = 'toast', 3500);
     }
 
     /* ============================================================
-       ✅ 表單實際送出（EmailJS）
+       6. 表單送出（GAS + no-cors）
+       ✅ <form> submit 事件，Enter 鍵可送出
+       ✅ btn 立刻 disable 防止連點
+       ✅ mode:'no-cors' 解決 GAS CORS 重導向誤判
+       ✅ this.reset() 一行清空所有欄位
        ============================================================ */
-    async function submitForm() {
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('submit-btn');
+      const originalText = btn.textContent;
+
+      // 立刻 disable，防止連點
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
       const name    = document.getElementById('cf-name').value.trim();
       const contact = document.getElementById('cf-contact').value.trim();
       const svcType = document.getElementById('cf-type').value;
       const msg     = document.getElementById('cf-msg').value.trim();
 
-      if (!name || !contact) { showToast('Please fill in name & contact', 'error'); return; }
-      if (!msg)               { showToast('Please describe your project', 'error'); return; }
-
-      const btn = document.getElementById('submit-btn');
-      btn.disabled    = true;
-      btn.textContent = 'Sending…';
+      if (!name || !contact) {
+        showToast('Please fill in name & contact', 'error');
+        btn.disabled = false;
+        btn.textContent = originalText;
+        return;
+      }
+      if (!msg) {
+        showToast('Please describe your project', 'error');
+        btn.disabled = false;
+        btn.textContent = originalText;
+        return;
+      }
 
       try {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          from_name   : name,
-          contact     : contact,
-          service_type: svcType || '未選擇',
-          message     : msg,
+        await fetch(GAS_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: JSON.stringify({
+            name,
+            contact,
+            service_type: svcType || '未選擇',
+            message: msg,
+          }),
         });
-
         showToast("✅ Sent! We'll reply within 24 hours.", 'success');
-        document.getElementById('cf-name').value    = '';
-        document.getElementById('cf-contact').value = '';
-        document.getElementById('cf-type').value    = '';
-        document.getElementById('cf-msg').value     = '';
-
+        this.reset();
       } catch (err) {
-        console.error('EmailJS error:', err);
+        console.error('GAS error:', err);
         showToast('❌ Failed. Please contact us via LINE / Email directly.', 'error');
       } finally {
-        btn.disabled    = false;
-        btn.textContent = '送出詢問 / Submit →';
+        btn.disabled = false;
+        btn.textContent = originalText;
       }
-    }
+    });
   </script>
 </body>
 </html>
